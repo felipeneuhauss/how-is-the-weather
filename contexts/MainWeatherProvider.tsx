@@ -31,7 +31,7 @@ const MainWeatherProvider = ({ children }: { children: any }) => {
     localForecast,
     onLocalForecastSelected,
     setLocalForecast,
-  }), [localForecast]);
+  }), [localForecast, onLocalForecastSelected, setLocalForecast]);
 
   return (
     <WeatherContext.Provider value={value}>
