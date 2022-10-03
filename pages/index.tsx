@@ -2,7 +2,6 @@
 /** @jsxImportSource theme-ui */
 
 import { Flex, Text } from 'theme-ui';
-import { nanoid } from 'nanoid';
 import { ReactElement, useEffect, useState } from 'react';
 import Seo from 'components/Seo';
 import MainLayout from 'layouts/MainLayout';
@@ -15,9 +14,9 @@ import WeatherForecast from 'components/WeatherForecast';
 import Autocomplete from 'react-google-autocomplete';
 import { useCookies } from 'react-cookie';
 import { toast } from 'react-toastify';
+import { TOAST_DEFAULT_CONFIG } from 'shared/consts';
+import Svg from 'components/Svg';
 import { NextPageWithLayout } from './_app';
-import { TOAST_DEFAULT_CONFIG } from '../shared/consts';
-import Svg from '../components/Svg';
 
 // eslint-disable-next-line no-undef
 import PlaceResult = google.maps.places.PlaceResult;
