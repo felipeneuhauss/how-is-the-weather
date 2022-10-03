@@ -6,6 +6,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        run: echo "The API key is:${{env.OPEN_WEATHER_MAP_API_URL_COORD}} ${{secrets.OPEN_WEATHER_MAP_API_URL_COORD}}"
       - name: Cypress run
         uses:  cypress-io/github-action@v4
         with:
@@ -27,4 +28,4 @@ jobs:
       - name: run Lighthouse CI
         run: |
           npm install -g @lhci/cli@0.9.0
-          lhci autorun
+          lhci autorun collec --url=how-is-the-weather-utjt.vercel.app
