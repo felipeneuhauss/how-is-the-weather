@@ -1,16 +1,16 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 ## TODOS
-- [ ] Get user location
-- [ ] Save locations on cookies
-- [ ] Get current weather
-- [ ] Create component to show the weather
-- [ ] Autocomplete google search
-- [ ] Get city weather
-- [ ] Create component to show the weather
-- [ ] Get weather by city
-- [ ] Save the users cities - cookies
-- [ ] Load cities after reload
-- [ ] Invalidate page after 60 minutes?
+- [x] Get user location
+- [x] Save locations on cookies
+- [x] Get current weather
+- [x] Create component to show the weather
+- [x] Autocomplete google search
+- [x] Get city weather
+- [x] Create component to show the weather
+- [x] Get weather by city
+- [x] Save the users cities - cookies
+- [x] Load cities after reload
+- [x] Invalidate page after 60 minutes?
 - [ ] Add storybook
 - [ ] Add github cicd
 - [ ] Add lighthouse

@@ -1,7 +1,8 @@
 /** @jsxRuntime automatic */
 /** @jsxImportSource theme-ui */
 
-import { Box, Flex, Text } from 'theme-ui';
+import { Flex, Text } from 'theme-ui';
+import { nanoid } from 'nanoid';
 import { ReactElement, useEffect, useState } from 'react';
 import Seo from 'components/Seo';
 import MainLayout from 'layouts/MainLayout';
@@ -16,10 +17,10 @@ import { useCookies } from 'react-cookie';
 import { toast } from 'react-toastify';
 import { NextPageWithLayout } from './_app';
 import { TOAST_DEFAULT_CONFIG } from '../shared/consts';
+import Svg from '../components/Svg';
 
 // eslint-disable-next-line no-undef
 import PlaceResult = google.maps.places.PlaceResult;
-import Svg from '../components/Svg';
 
 export async function getServerSideProps({ req, res }: GetServerSidePropsContext) {
   const cookiesData = parseCookies(req);
@@ -46,7 +47,8 @@ type HomeProps = {
 const Home: NextPageWithLayout<HomeProps> = ({
   localForecast, cityForecastsSelected,
 }: HomeProps) => {
-  const [cityForecasts, setCityForecasts] = useState<CityForecast[]>([]);
+  console.log('Rerender...');
+  const [cityForecasts, setCityForecasts] = useState<CityForecast[]>(cityForecastsSelected || []);
   const [, setCookie] = useCookies(['cityForecasts']);
   const {
     onLocalForecastSelected,
@@ -55,9 +57,6 @@ const Home: NextPageWithLayout<HomeProps> = ({
   useEffect(() => {
     if (localForecast) {
       setLocalForecast(localForecast);
-    }
-    if (cityForecastsSelected) {
-      setCityForecasts(cityForecastsSelected);
     }
     navigator.geolocation.getCurrentPosition(async (position) => {
       onLocalForecastSelected(await getCoordinatesWeather(
@@ -98,11 +97,11 @@ const Home: NextPageWithLayout<HomeProps> = ({
       place.geometry?.location?.lng(),
     );
 
-    const newCityForecasts = [{
+    const newCityForecasts = [...cityForecasts, {
       id: place.place_id,
       name: place.formatted_address,
       forecast,
-    }, ...cityForecasts];
+    }];
     setNewForecasts(newCityForecasts);
     toast.success(
       'New place added ',
@@ -114,7 +113,7 @@ const Home: NextPageWithLayout<HomeProps> = ({
     const newCityForecasts = cityForecasts.filter(
       (cityForecast) => cityForecast.forecast.id !== forecastId,
     );
-    console.log(forecastId, newCityForecasts);
+
     setNewForecasts(newCityForecasts);
     toast.info('Weather forecast removed');
   };
@@ -135,8 +134,9 @@ const Home: NextPageWithLayout<HomeProps> = ({
           mb: 100,
         }}
         >
-          <Text as="h2">Search a city and find out how the weather is.</Text>
+          <Text as="h2" data-cy="h1-el">Search a city and find out how the weather is.</Text>
           <Autocomplete
+            data-cy="autocomplete-el"
             style={{
               fontSize: 14, paddingTop: 8, paddingBottom: 8, paddingLeft: 4, paddingRight: 4,
             }}

@@ -24,7 +24,7 @@ const WeatherForecast: React.FC<ForecastProps> = ({
   };
 
   return (
-    <Box>
+    <Box data-cy="weather-forecast-component">
       <>
         <Flex sx={{
           flexDirection: 'row',
@@ -36,7 +36,11 @@ const WeatherForecast: React.FC<ForecastProps> = ({
           >
             <WeatherIcon icon={forecast?.icon!} alt={forecast?.desc || '-'} />
             <Text as="span" sx={{ fontSize: 28, fontWeight: 'bold' }}>{forecast?.temp}</Text>
-            <Text as="h2" sx={{ fontSize: 28, fontWeight: 'bold', position: 'relative' }}>
+            <Text
+              as="h2"
+              sx={{ fontSize: 28, fontWeight: 'bold', position: 'relative' }}
+              data-cy="weather-forecast-component-locale"
+            >
               {forecast.where}
               {' '}
             </Text>
