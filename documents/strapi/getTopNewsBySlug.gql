@@ -1,0 +1,13 @@
+query getTopNewsBySlug($slug: String) {
+  topNews(filters: { slug: { eq: $slug } }) {
+    data {
+      attributes {
+        title
+        slug
+        description
+        imageUrl
+        createdAt
+      }
+    }
+  }
+}

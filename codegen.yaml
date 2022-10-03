@@ -1,0 +1,11 @@
+schema: http://localhost:1337/graphql
+documents: ./documents/strapi/*gql
+generates:
+  ./graphql/generated.ts:
+    plugins:
+      - typescript-graphql-request
+      - typescript
+      - typescript-operations
+      - typescript-document-nodes
+    config:
+      fetcher: fetch
