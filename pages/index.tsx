@@ -116,7 +116,7 @@ const Home: NextPageWithLayout<HomeProps> = ({
     toast.info('Weather forecast removed');
   };
 
-  console.log('Rerender...', cityForecasts);
+  console.log('Rerender...', cityForecasts.length);
   return (
     <>
       <Seo title="How is the weather today?" />

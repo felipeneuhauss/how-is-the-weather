@@ -22,7 +22,7 @@ jobs:
           node-version: 12.x
       - name: yarn install, build
         run: |
-          yarn ryn install
+          yarn run install
           yarn run build
       - name: run Lighthouse CI
         run: |
