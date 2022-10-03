@@ -46,7 +46,6 @@ type HomeProps = {
 const Home: NextPageWithLayout<HomeProps> = ({
   localForecast, cityForecastsSelected,
 }: HomeProps) => {
-  console.log('Rerender...');
   const [cityForecasts, setCityForecasts] = useState<CityForecast[]>(cityForecastsSelected || []);
   const [, setCookie] = useCookies(['cityForecasts']);
   const {
@@ -117,6 +116,7 @@ const Home: NextPageWithLayout<HomeProps> = ({
     toast.info('Weather forecast removed');
   };
 
+  console.log('Rerender...', cityForecasts);
   return (
     <>
       <Seo title="How is the weather today?" />

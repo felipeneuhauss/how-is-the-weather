@@ -2,17 +2,15 @@ name: CI
 on: [push]
 jobs:
   cypress-run:
-    name: Cypress run
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Cypress run
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4.x.x
         with:
-          build: yarn run build
-          start: yarn run start
-          wait-on: http://localhost:3000
+          build: npm run build
+          start: npm start
   lhci:
     name: Lighthouse
     runs-on: ubuntu-latest
@@ -22,10 +20,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      - name: npm install, build
+      - name: yarn install, build
         run: |
-          npm install
-          npm run build
+          yarn ryn install
+          yarn run build
       - name: run Lighthouse CI
         run: |
           npm install -g @lhci/cli@0.8.x
