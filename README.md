@@ -69,3 +69,9 @@ _Cypress tests_ and the _[Lighthouse](https://github.com/GoogleChrome/lighthouse
 - [x] Add lighthouse
 - [x] Add cypress tests
 - [ ] Add Docker
+
+## Timesheet
+
+The whole time spent in this project is related in the report bellow or in this [ink](https://wakatime.com/@ca63550e-cc01-4bb5-8f08-3b1c43419b28/projects/calxdoamwv?start=2022-09-28&end=2022-10-04)
+
+![Wakatime](./docs/time.png)
