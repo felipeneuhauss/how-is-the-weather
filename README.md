@@ -3,6 +3,8 @@
 All resources added in this project are initial concepts to highlight all NextJS frontend ecosystem.
 Only few forecasts attributes were used for this test.
 
+Live project -> [https://how-is-the-weather-utjt.vercel.app/](https://how-is-the-weather-utjt.vercel.app/)
+
 ## Getting Started
 
 First, run the development server:
