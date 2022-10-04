@@ -7,19 +7,16 @@ import Seo from 'components/Seo';
 import MainLayout from 'layouts/MainLayout';
 import { GetServerSidePropsContext } from 'next';
 import parseCookies from 'shared/helpers/parse-cookies';
-import { CityForecast, Forecast } from 'shared/types';
+import { Candidate, CityForecast, Forecast } from 'shared/types';
 import { useWeatherForecasts } from 'contexts/MainWeatherProvider';
 import getCoordinatesWeather from 'resources/getCoordinatesForecasts';
 import WeatherForecast from 'components/WeatherForecast';
-import Autocomplete from 'react-google-autocomplete';
 import { useCookies } from 'react-cookie';
 import { toast } from 'react-toastify';
 import { TOAST_DEFAULT_CONFIG } from 'shared/consts';
 import Svg from 'components/Svg';
+import AutocompletePlaces from 'components/AutocompletePlaces';
 import { NextPageWithLayout } from './_app';
-
-// eslint-disable-next-line no-undef
-import PlaceResult = google.maps.places.PlaceResult;
 
 export async function getServerSideProps({ req, res }: GetServerSidePropsContext) {
   const cookiesData = parseCookies(req);
@@ -71,8 +68,8 @@ const Home: NextPageWithLayout<HomeProps> = ({
     setCityForecasts(() => newCityForecasts);
   };
 
-  const handleAutocomplete = async (place: PlaceResult) => {
-    if (!place.geometry?.location?.lat() || !place.geometry?.location?.lng()) {
+  const handleAutocompleteSelection = async (place: Candidate) => {
+    if (!place.geometry?.location?.lat || !place.geometry?.location?.lng) {
       toast.error(
         'Coordinates not found ',
         TOAST_DEFAULT_CONFIG,
@@ -81,7 +78,7 @@ const Home: NextPageWithLayout<HomeProps> = ({
     }
 
     if (cityForecasts.find(
-      (cityForecast) => cityForecast.id === place.place_id,
+      (cityForecast) => cityForecast.name?.includes(place.formatted_address),
     )) {
       toast.error(
         'City already added',
@@ -91,12 +88,11 @@ const Home: NextPageWithLayout<HomeProps> = ({
     }
 
     const forecast = await getCoordinatesWeather(
-      place.geometry?.location?.lat(),
-      place.geometry?.location?.lng(),
+      place.geometry?.location?.lat,
+      place.geometry?.location?.lng,
     );
 
     const newCityForecasts = [...cityForecasts, {
-      id: place.place_id,
       name: place.formatted_address,
       forecast,
     }];
@@ -107,7 +103,7 @@ const Home: NextPageWithLayout<HomeProps> = ({
     );
   };
 
-  const onForecastRemoved = (forecastId: number) => {
+  const onForecastRemoved = (forecastId: string) => {
     const newCityForecasts = cityForecasts.filter(
       (cityForecast) => cityForecast.forecast.id !== forecastId,
     );
@@ -128,28 +124,20 @@ const Home: NextPageWithLayout<HomeProps> = ({
       >
         <Flex sx={{
           flexDirection: 'column',
-          gap: 16,
           mb: 100,
         }}
         >
           <Text as="h2" data-cy="h1-el">Search a city and find out how the weather is.</Text>
-          <Autocomplete
-            data-cy="autocomplete-el"
-            style={{
-              fontSize: 14, paddingTop: 8, paddingBottom: 8, paddingLeft: 4, paddingRight: 4,
-            }}
-            apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
-            onPlaceSelected={(place) => handleAutocomplete(place)}
-          />
+          <AutocompletePlaces onPlaceSelected={handleAutocompleteSelection} />
           {cityForecasts.length ? (
             <Flex sx={{
-              alignContent: 'center', justifyContent: 'center', flexDirection: 'column', mb: 50,
+              alignContent: 'center', justifyContent: 'center', flexDirection: 'column', mb: 50, mt: 70,
             }}
             >
               {cityForecasts.map(
                 (cityForecast) => (
                   <WeatherForecast
-                    key={cityForecast.id}
+                    key={cityForecast.forecast.id}
                     forecast={cityForecast.forecast}
                     onForecastRemoved={onForecastRemoved}
                   />

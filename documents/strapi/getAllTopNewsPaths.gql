@@ -1,9 +1,0 @@
-query getAllTopNewsPath {
-    topNews {
-        data {
-            attributes {
-                slug
-            }
-        }
-    }
-}

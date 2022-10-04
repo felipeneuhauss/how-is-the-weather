@@ -79,7 +79,7 @@ export interface NextDay {
 }
 
 export interface Forecast {
-    id: number
+    id: string
     where: string
     when: string
     desc: string
@@ -251,7 +251,44 @@ export interface Locale {
 export type LocalesResponse = Locale[]
 
 export interface CityForecast {
-    id?: string
+    id?: number
     name?: string
     forecast: Forecast
+}
+
+export interface Candidate {
+    formatted_address: string
+    geometry: Geometry
+    name: string
+}
+
+export interface Geometry {
+    location: Location
+    viewport: Viewport
+}
+
+export interface Location {
+    lat: number
+    lng: number
+}
+
+export interface Viewport {
+    northeast: Northeast
+    southwest: Southwest
+}
+
+export interface Northeast {
+    lat: number
+    lng: number
+}
+
+export interface Southwest {
+    lat: number
+    lng: number
+}
+
+
+export interface AutocompleteGooglePlaceResponse {
+    candidates: Candidate[]
+    status: string
 }

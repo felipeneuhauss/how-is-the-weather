@@ -11,7 +11,7 @@ import { Forecast, NextDay } from '../shared/types';
 type ForecastProps = {
   forecast: Forecast,
   // eslint-disable-next-line react/require-default-props
-  onForecastRemoved?: (id: number) => void
+  onForecastRemoved?: (id: string) => void
 }
 
 const WeatherForecast: React.FC<ForecastProps> = ({

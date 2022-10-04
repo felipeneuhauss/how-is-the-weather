@@ -4,6 +4,7 @@ import {
   Forecast, ForecastResponse, LocalesResponse,
 } from 'shared/types';
 import { timeToWeekDay } from 'helpers/convertor';
+import { nanoid } from 'nanoid';
 
 export default async (req: NextApiRequest, res: NextApiResponse<Forecast | string>) => {
   const { lat, long } = req.query;
@@ -24,7 +25,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Forecast | strin
     if (!forecast || !locale) return res.status(404).send('Forecasts for the location given not found');
 
     return res.status(200).json({
-      id: forecast.current.weather[0]?.id,
+      id: nanoid(),
       where: `${locale[0].name}, ${locale[0].country}`,
       when: timeToWeekDay(forecast.current.dt),
       desc: forecast.current.weather[0]?.main || '-',
