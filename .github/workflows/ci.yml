@@ -34,6 +34,6 @@ jobs:
       - name: run Lighthouse CI
         run: |
           npm install -g @lhci/cli@0.9.0
-          lhci autorun --collect.staticDistDir=.next --upload.target=temporary-public-target || "LHCI failed"
+          lhci autorun
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
