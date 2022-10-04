@@ -1,7 +1,7 @@
 /** @jsxRuntime automatic */
 /** @jsxImportSource theme-ui */
 
-import { Flex, Text } from 'theme-ui';
+import { Box, Flex, Text } from 'theme-ui';
 import { ReactElement, useEffect, useState } from 'react';
 import Seo from 'components/Seo';
 import MainLayout from 'layouts/MainLayout';
@@ -131,16 +131,18 @@ const Home: NextPageWithLayout<HomeProps> = ({
           <AutocompletePlaces onPlaceSelected={handleAutocompleteSelection} />
           {cityForecasts.length ? (
             <Flex sx={{
-              alignContent: 'center', justifyContent: 'center', flexDirection: 'column', mb: 50, mt: 70,
+              alignContent: 'center', justifyContent: 'center', flexDirection: 'column', my: 20,
             }}
             >
               {cityForecasts.map(
                 (cityForecast) => (
-                  <WeatherForecast
-                    key={cityForecast.forecast.id}
-                    forecast={cityForecast.forecast}
-                    onForecastRemoved={onForecastRemoved}
-                  />
+                  <Box sx={{ mb: 2 }}>
+                    <WeatherForecast
+                      key={cityForecast.forecast.id}
+                      forecast={cityForecast.forecast}
+                      onForecastRemoved={onForecastRemoved}
+                    />
+                  </Box>
                 ),
               )}
             </Flex>

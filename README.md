@@ -1,6 +1,7 @@
-### Intro
+## Intro
 
-All resources added in this project are initial concepts to highlight all NextJS frontend ecosystem.  
+All resources added in this project are initial concepts to highlight all NextJS frontend ecosystem.
+Only few forecasts attributes were used for this test.
 
 ## Getting Started
 
@@ -15,7 +16,7 @@ yarn dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 
-### Tests
+## E2E Tests
 
 To run the tests locally:
 
@@ -25,7 +26,7 @@ yarn run dev
 yarn run cypress
 ```
 
-### Storybook
+## Storybook
 
 Storybook is a JavaScript tool that allows developers to create organized 
 UI systems making both the building process and documentation more 
@@ -45,7 +46,9 @@ Open [http://localhost:6006/](http://localhost:6006/) with your browser to see t
 ### CI/CD
 
 The Github Actions are defined as the CI/CD process.
-Cypress tests and the [Lighthouse](https://github.com/GoogleChrome/lighthouse-ci) evaluation run every push in the main branch
+_Cypress tests_ and the _[Lighthouse](https://github.com/GoogleChrome/lighthouse-ci) evaluation_ run every push in the main branch
+
+*For the next project version, assertions can be defined for Lighthouse in order to avoid any Core Web Vitals regressions*
 
 ![Storybook](./docs/cicd.png)
 
