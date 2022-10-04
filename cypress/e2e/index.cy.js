@@ -9,7 +9,7 @@ function mockLocation(latitude, longitude) {
         throw err({ code: 1 });
       });
     },
-
+    timeout: 20000,
   };
 }
 describe('IndexPage', () => {
