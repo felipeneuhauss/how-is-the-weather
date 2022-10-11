@@ -5,10 +5,21 @@ Only few forecasts attributes were used for this test.
 
 Live project -> [https://how-is-the-weather-utjt.vercel.app/](https://how-is-the-weather-utjt.vercel.app/)
 
+
 ## Getting Started
+1. Firstly, This project loads places from google maps API. In order to test it locally please install this [chrome CORS extension](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf)
 
-First, run the development server:
 
+2. Secondly, rename de file .env.example to .env.local
+
+```env
+OPEN_WEATHER_MAP_API_KEY=
+OPEN_WEATHER_MAP_API_URL_COORD=
+OPEN_WEATHER_MAP_API_URL_CITY=
+OPEN_WEATHER_MAP_API_URL_CITY_REVERSE=
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=
+```
+3. And then
 ```bash
 yarn install
 #  and after that
