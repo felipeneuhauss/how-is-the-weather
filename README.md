@@ -14,9 +14,9 @@ Live project -> [https://how-is-the-weather-utjt.vercel.app/](https://how-is-the
 
 ```env
 OPEN_WEATHER_MAP_API_KEY=
-OPEN_WEATHER_MAP_API_URL_COORD=
-OPEN_WEATHER_MAP_API_URL_CITY=
-OPEN_WEATHER_MAP_API_URL_CITY_REVERSE=
+OPEN_WEATHER_MAP_API_URL_COORD=https://api.openweathermap.org/data/3.0/onecall?
+OPEN_WEATHER_MAP_API_URL_CITY=http://api.openweathermap.org/geo/1.0/direct?
+OPEN_WEATHER_MAP_API_URL_CITY_REVERSE=http://api.openweathermap.org/geo/1.0/reverse?
 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=
 ```
 3. And then
